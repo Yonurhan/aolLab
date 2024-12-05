@@ -7,7 +7,7 @@
             <h1 class="card-title text-center">Discover CuantiN</h1>
             <p class="card-text text-center">The modern, authentic Chinese Restaurant, CuantiN started their culinary story back in 1915</p>
             <div class="text-center">
-                <button type="button" class="btn btn-danger text-white">Explore Our Menu</button>
+                <a href="/menu-items" class="btn btn-danger text-white">Explore Our Menu</a>
             </div>
         </div>
     </div>
