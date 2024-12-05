@@ -33,7 +33,7 @@
           <a class="nav-link" href="/menu-items">Menu</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Outlets</a>
+          <a class="nav-link" href="/outlets">Outlets</a>
         </li>
       </ul>
     </div>
