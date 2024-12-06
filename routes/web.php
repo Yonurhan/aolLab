@@ -29,6 +29,15 @@ Route::get('/outlets', [OutletController::class, 'index']);
 Route::get('/outlets', [OutletController::class, 'search']);
 Route::post('/outlets', [OutletController::class, 'search']);
 
+Route::get('/add-outlet', function () {
+    return view('addoutlet');
+});
+Route::get('/add-outlet', [OutletController::class, 'index_add']);
+Route::post('/add-outlet', [OutletController::class, 'add']);
+Route::put('/add-outlet', [OutletController::class, 'edit']);
+Route::get('/add-outlet/{id}/edit', [OutletController::class, 'edit'])->name('outlet.edit');
+Route::put('/add-outlet/{id}', [OutletController::class, 'update'])->name('outlets.update');
+
 
 Auth::routes();
 
