@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use App\Models\Outlet;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
+
 
 class OutletSeeder extends Seeder
 {
@@ -18,6 +20,7 @@ class OutletSeeder extends Seeder
             'region' => 'West Jakarta',
             'opening_time' => '08:00:00',
             'closing_time'  => '22:00:00',
+            'date' => Carbon::create(2024, 12, 25)
         ]);
         
         Outlet::create([
@@ -25,6 +28,7 @@ class OutletSeeder extends Seeder
             'region' => 'West Jakarta',
             'opening_time' => '05:00:00',
             'closing_time'  => '17:00:00',
+            'date' => Carbon::create(2024, 12, 25)
         ]);
 
         Outlet::create([
@@ -32,6 +36,7 @@ class OutletSeeder extends Seeder
             'region' => 'South Tangerang',
             'opening_time' => '09:00:00',
             'closing_time'  => '22:00:00',
+            'date' => Carbon::create(2024, 12, 25)
         ]);
 
         Outlet::create([
@@ -39,6 +44,7 @@ class OutletSeeder extends Seeder
             'region' => 'Tangerang',
             'opening_time' => '08:00:00',
             'closing_time'  => '22:00:00',
+            'date' => Carbon::create(2024, 12, 25)
         ]);
 
         Outlet::create([
@@ -46,6 +52,7 @@ class OutletSeeder extends Seeder
             'region' => 'North Jakarta',
             'opening_time' => '08:00:00',
             'closing_time'  => '22:00:00',
+            'date' => Carbon::create(2024, 12, 25)
         ]);
 
     }

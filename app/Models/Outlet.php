@@ -10,6 +10,7 @@ class Outlet extends Model
         'outlet_name', 
         'region', 
         'opening_time',
-        'closing_time'
+        'closing_time',
+        'date'
     ];
 }
