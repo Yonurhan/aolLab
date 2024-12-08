@@ -17,69 +17,102 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
-
-<nav class="navbar navbar-expand-lg bg-danger text-light">
-  <div class="container-fluid">
-    <a class="navbar-brand">CuantiN</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/homepage">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/menu-items">Menu</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/outlets">Outlets</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/add-outlet">Add Outlets</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-    <div>
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
-
-    <footer class="bg-dark text-white py-4">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <h5>About Us</h5>
-                <p>
-                    CuantiN is dedicated to providing the best dining experience with our diverse menu and welcoming outlets.
-                </p>
+    <div id="app" class="d-flex flex-column min-vh-100">
+        <nav class="navbar navbar-expand-lg navbar-secondary bg-danger">
+            <div class="container-fluid">
+                <a class="navbar-brand">CuantiN</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/homepage">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/menu-items">Menu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/outlets">Outlets</a>
+                        </li>
+                        @guest
+                        @else
+                            @if (Auth::user()->is_admin)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/add-menu">Add Menu</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/add-outlet">Add Outlets</a>
+                                </li>
+                            @else
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/bookings">Bookings</a>
+                                </li>
+                            @endif
+                        @endguest
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="/login">Login</a>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="/profile">Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </li>
+                        @endguest
+                    </ul>
+                </div>
             </div>
+        </nav>
 
-
-            <div class="col-md-4">
-                <h5>Contact</h5>
-                <p>Email: info@cuantin.com</p>
-                <p>Phone: (123) 456-7890</p>
-            </div>
-
-            <div class="col-md-4">
-                <h5>Follow Us</h5>
-                <p>
-                    <a href="#" class="text-white text-decoration-none">Facebook</a>
-                    <span class="mx-2">|</span>
-                    <a href="#" class="text-white text-decoration-none">Twitter</a>
-                    <span class="mx-2">|</span>
-                    <a href="#" class="text-white text-decoration-none">Instagram</a>
-                </p>
-            </div>
+        <div>
+            <main class="flex-grow-1 py-4">
+                @yield('content')
+            </main>
         </div>
+
+        <footer class="bg-dark text-secondary py-4 mt-auto">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h5>About Us</h5>
+                        <p>
+                            CuantiN is dedicated to providing the best dining experience with our diverse menu and welcoming outlets.
+                        </p>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h5>Contact</h5>
+                        <p>Email: info@cuantin.com</p>
+                        <p>Phone: (123) 456-7890</p>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h5>Follow Us</h5>
+                        <p>
+                            <a href="#" class="text-secondary text-decoration-none">Facebook</a>
+                            <span class="mx-2">|</span>
+                            <a href="#" class="text-secondary text-decoration-none">Twitter</a>
+                            <span class="mx-2">|</span>
+                            <a href="#" class="text-secondary text-decoration-none">Instagram</a>
+                        </p>
+                    </div>
+
+                    <p class="text-center mt-3">&copy; 2024 CuantiN. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
     </div>
-</footer>
-
-
 </body>
 </html>

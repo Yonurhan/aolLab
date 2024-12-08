@@ -1,5 +1,14 @@
 @extends('layouts.app')
 
+<style>
+    body {
+        background-image: url('{{ asset('storage/Autumn.jpg') }}');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+</style>
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -10,9 +19,8 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-
                         <div class="row mb-3">
-                            <label for="email" class=" col-form-label text-md-start">{{ __('Email Address') }}</label>
+                            <label for="email" class=" col-form-label text-md-start">{{ __('Email') }}</label>
 
                             <div class="col-md-12 col-form-label text-md-start">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -53,12 +61,12 @@
 
                         <div class="row mb-0">
                             <div class="col-form-label text-md-star">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-danger">
                                     {{ __('Login') }}
                                 </button>
-                                
+
                                 <br>
-                                
+
                                 @if (Route::has('register'))
                                     Don't have an account? Register
                                     <a class="btn btn-link" href="{{ route('register') }}">

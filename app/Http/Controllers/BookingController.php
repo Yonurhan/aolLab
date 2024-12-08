@@ -11,11 +11,13 @@ class BookingController extends Controller
     public function index()
     {
         if (Auth::user()->is_admin) {
-            $bookings = Booking::all();
+            // $bookings = Booking::all();
+            $bookings = Booking::with('user', 'outlet')->get();
         } else {
-            $bookings = Booking::where('user', Auth::user()->name)->get();
+            // $bookings = Booking::where('id', Auth::user()->id)->get();
+            $bookings = Booking::with('user', 'outlet')->where('id', Auth::user()->id)->get();
         }
-        return view('bookings.index', compact('bookings'));
+        return view('bookings', compact('bookings'));
     }
 
     public function store(Request $request)
@@ -26,7 +28,8 @@ class BookingController extends Controller
             'guests' => 'required|integer|min:1'
         ]);
 
-        Booking::created([
+        Booking::create([
+            'id' => Auth::id(),
             'outlet' => $request->outlet,
             'time' => $request->time,
             'guests' => $request->guests,
