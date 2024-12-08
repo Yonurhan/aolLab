@@ -1,13 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mt-5">
-        @if(session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-
+    <div class="container mt-3">
         <h1>Bookings</h1>
 
         <table class="table table-bordered mt-4">
@@ -24,9 +18,9 @@
                 @foreach($bookings as $booking)
                     <tr>
                         <td>{{ $booking->id }}</td>
-                        <td>{{ $booking->outlet }}</td>
+                        <td>{{ $booking->outlet->outlet_name }}</td>
                         <td>{{ $booking->time }}</td>
-                        <td>{{ $booking->guests }}</td>
+                        <td>{{ $booking->guests }} people</td>
                         <td>{{ $booking->user }}</td>
                     </tr>
                 @endforeach
@@ -35,14 +29,19 @@
 
         @if(!Auth::user()->is_admin)
             <h2 class="mt-5">Create Booking</h2>
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
             <div class="form-container bg-dark p-3 rounded" style="max-width: 400px; color: white;">
                 <form method="POST" action="{{ route('bookings.store') }}">
                     @csrf
                     <div class="form-group" style="margin: 25px 25px">
                         <label for="outlet">Outlet Choice</label>
-                        <select name="outlet" id="outlet" class="form-control @error('outlet') is-invalid @enderror" required>
-                            @foreach (App\Models\Outlet::all() as $outlet)
-                                <option value="{{ $outlet->name }}">{{ $outlet->name }}</option>
+                        <select id="outlet" name="outlet_id" class="form-control @error('outlet') is-invalid @enderror" required>
+                            @foreach ($outlets as $outlet)
+                                <option value="{{ $outlet->id }}">{{ $outlet->outlet_name }}</option>
                             @endforeach
                         </select>
                         @error('outlet')

@@ -44,6 +44,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="/add-outlet">Add Outlets</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/bookings">Bookings</a>
+                                </li>
                             @else
                                 <li class="nav-item">
                                     <a class="nav-link" href="/bookings">Bookings</a>
