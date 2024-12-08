@@ -43,13 +43,13 @@ class MenuController extends Controller
             'image_path' => 'required|file|image|max:5000',
         ]);
         // dd($validateData);
-        if ($request->hasFile('file')) {
-            $extFile = $request->file->getClientOriginalExtension();
+       
+            $extFile = $request->image_path->getClientOriginalExtension();
             $name = $request->input('food_name');
             $fileName = $name.'.'.$extFile;
-            $path = $request->file->storeAs('', $fileName, 'public');
+            $path = $request->image_path->storeAs('', $fileName, 'public');
             $validateData['image_path'] = $path;
-        }
+        
 
         $validateData['date'] = Carbon::now()->format('Y-m-d');
 

@@ -20,7 +20,7 @@
             <div class="col-md-4">
 
                 <div class="card text-center" style="width: 18rem; height: 450px">
-                        <img src="{{ asset($makanan->image_path) }}" alt="{{ $makanan->food_name }}" class="card-img-top"  style="height: 300px; width: 100%; object-fit: cover;">
+                        <img src="{{ asset('storage/' . $makanan->image_path) }}" alt="{{ $makanan->food_name }}" class="card-img-top"  style="height: 300px; width: 100%; object-fit: cover;">
 
                         <div class="card-body">
                             <h5 class="card-title">{{ $makanan->food_name }}</h5>

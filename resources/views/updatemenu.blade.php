@@ -33,7 +33,7 @@
         </div>
         <div class="col-md-12 mt-2">
             <input type="file" class="form-control-file" id="file" name="file">
-            <img src="{{ asset($viewMenu->image_path) }}" alt="{{ $viewMenu->food_name }}" style="height: 200px; width: 200px; object-fit: cover;">
+            <img src="{{ asset('storage/' . $viewMenu->image_path) }}" alt="{{ $viewMenu->food_name }}" style="height: 200px; width: 200px; object-fit: cover;">
             @error('file')
             <div class="text-danger">{{ $message }}</div>
             @enderror

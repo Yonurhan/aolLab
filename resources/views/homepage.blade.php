@@ -3,7 +3,7 @@
 @section('content')
 <div class="d-flex flex-column justify-content-center align-items-center">
     <div class="card" style="width: 80rem">
-        <div class="card-body" style="background-image: url('{{ asset('storage/Discovery_background.jpg') }}'); background-size: cover; background-position: center; color:white">
+        <div class="card-body" style="background-image: url('{{ asset('storage/storage/Discovery_background.jpg') }}'); background-size: cover; background-position: center; color:white">
             <h1 class="card-title text-center">Discover CuantiN</h1>
             <p class="card-text text-center">The modern, authentic Chinese Restaurant, CuantiN started their culinary story back in 1915</p>
             <div class="text-center">
@@ -26,7 +26,7 @@
         @foreach($viewMakanan as $makanan)
             <div class="col-md-4">
                     <div class="card text-center" style="width: 18rem; height: 450px">
-                        <img src="{{ asset($makanan->image_path) }}" alt="{{ $makanan->food_name }}" class="card-img-top"  style="height: 300px; width: 100%; object-fit: cover;">
+                        <img src="{{ asset('storage/' . $makanan->image_path) }}" alt="{{ $makanan->food_name }}" class="card-img-top"  style="height: 300px; width: 100%; object-fit: cover;">
 
                         <div class="card-body">
                             <h5 class="card-title">{{ $makanan->food_name }}</h5>
