@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\OutletController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
@@ -37,4 +38,5 @@ Auth::routes();
 Route::middleware(['auth'])->group(function () {
     Route::get('/bookings', [BookingController::class, 'index'])->name('bookings');
     Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
 });
