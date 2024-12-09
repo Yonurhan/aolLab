@@ -19,19 +19,19 @@ class MenuController extends Controller
     }
 
     public function menu(){
-        $viewMakanan = Menu::orderBy("food_name","desc")->paginate(3);
+        $viewMakanan = Menu::orderBy("food_name","desc")->paginate(6);
         return view("menuitems",compact("viewMakanan"));
     }
 
     public function search(Request $request)
     {
-        $viewMakanan = Menu::where("food_name","LIKE","%$request->search%")->paginate(3);
+        $viewMakanan = Menu::where("food_name","LIKE","%$request->search%")->paginate(6);
 
         return view('menuitems',compact("viewMakanan"));
     }
 
     public function index_add(){
-        $viewMenu = Menu::orderBy("item_type","desc")->simplePaginate(10);
+        $viewMenu = Menu::orderBy("item_type","desc")->paginate(10);
         return view("addmenu",compact("viewMenu"));
     }
 
@@ -47,7 +47,7 @@ class MenuController extends Controller
             $extFile = $request->image_path->getClientOriginalExtension();
             $name = $request->input('food_name');
             $fileName = $name.'.'.$extFile;
-            $path = $request->image_path->storeAs('', $fileName, 'public');
+            $path = $request->image_path->storeAs('storage', $fileName, 'public');
             $validateData['image_path'] = $path;
         
 
@@ -60,7 +60,7 @@ class MenuController extends Controller
     public function edit(Request $request, $id)
     {
         $viewMenu = Menu::find($id);
-        return view('updatemenu',compact('viewMenu'));
+        return view('updatemenu',compact('viewMenu'))->paginate(20);
     }
 
     public function update(Request $request, $id){
@@ -77,7 +77,7 @@ class MenuController extends Controller
             $extFile = $request->file->getClientOriginalExtension();
             $name = $request->input('food_name');
             $fileName = $name.'.'.$extFile;
-            $path = $request->file->storeAs('', $fileName, 'public');
+            $path = $request->file->storeAs('storage', $fileName, 'public');
             $menu->image_path = $path;
         }
         

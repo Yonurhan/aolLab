@@ -14,8 +14,8 @@
 
     <div class="row">
         <div class="col-sm-6 col-md-8">
-        <h3 class="mb-4">Outlets</h3>
-            <table class="table table-striped table-bordered">
+        <h3 class="mb-4">Menu</h3>
+            <table class="table table-bordered">
                 <tbody>
                     @foreach($viewMenu as $index => $menu)
                         <tr>
