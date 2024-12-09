@@ -6,7 +6,7 @@
         <h1>Menu items</h1>
         <br>
         <form action="/menu-items" method="POST">
-            @csrf 
+            @csrf
             <nav class="navbar navbar-light bg-light">
                 <form class="form-inline">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search the menu.." aria-label="Search" name="search" style="width: 820px;">
@@ -14,7 +14,7 @@
                 </form>
             </nav>
 
-        
+
         <div class="row">
         @foreach($viewMakanan as $makanan)
             <div class="col-md-4">
