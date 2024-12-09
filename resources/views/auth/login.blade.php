@@ -2,7 +2,7 @@
 
 <style>
     body {
-        background-image: url('{{ asset('storage/Autumn.jpg') }}');
+        background-image: url('{{ asset('storage/storage/Autumn.jpg') }}');
         background-size: cover;
         background-repeat: no-repeat;
         background-attachment: fixed;

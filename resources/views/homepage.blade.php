@@ -23,7 +23,7 @@
         <h1>Menu Highlights</h1>
         <br>
         <div class="row">
-        @foreach($viewMakanan as $makanan)
+        @foreach($viewMakanan->take(3) as $makanan)
             <div class="col-md-4">
                     <div class="card text-center" style="width: 18rem; height: 450px">
                         <img src="{{ asset('storage/' . $makanan->image_path) }}" alt="{{ $makanan->food_name }}" class="card-img-top"  style="height: 300px; width: 100%; object-fit: cover;">
@@ -38,7 +38,19 @@
         @endforeach
     </div>
     <br>
-    {{ $viewMakanan->links() }}
+    <div class="mt-5 text-center">
+        <h1>Contact Us</h1>
+        <p>Phone : (62)852-18291928 </p>
+        <p>Email : cuantin@restaurant.com </p>
+        @if(auth()->check())
+            <div class="text-center">
+                <a href="/bookings" class="btn btn-danger text-white">Make a reservation</a>
+            </div>
+        @else
+        <div class="text-center">
+                <a href="/login" class="btn btn-danger text-white">Make a reservation</a>
+            </div>
+        @endif
     </div>
 </div>
 @endsection
