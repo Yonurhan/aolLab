@@ -20,36 +20,36 @@
     <div id="app" class="d-flex flex-column min-vh-100">
         <nav class="navbar navbar-expand-lg navbar-secondary bg-danger">
             <div class="container-fluid">
-                <a class="navbar-brand">CuantiN</a>
+                <a class="navbar-brand" style="color: white;">CuantiN</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/homepage">Home</a>
+                            <a class="nav-link active" style="color: white;" aria-current="page" href="/homepage">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/menu-items">Menu</a>
+                            <a class="nav-link" style="color: white;" href="/menu-items">Menu</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/outlets">Outlets</a>
+                            <a class="nav-link" style="color: white;" href="/outlets">Outlets</a>
                         </li>
                         @guest
                         @else
                             @if (Auth::user()->is_admin)
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/add-menu">Add Menu</a>
+                                    <a class="nav-link" style="color: white;" href="/add-menu">Add Menu</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/add-outlet">Add Outlets</a>
+                                    <a class="nav-link" style="color: white;" href="/add-outlet">Add Outlets</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/bookings">Bookings</a>
+                                    <a class="nav-link" style="color: white;" href="/bookings">Bookings</a>
                                 </li>
                             @else
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/bookings">Bookings</a>
+                                    <a class="nav-link" style="color: white;" href="/bookings">Bookings</a>
                                 </li>
                             @endif
                         @endguest
@@ -57,14 +57,14 @@
                     <ul class="navbar-nav ms-auto">
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="/login">Login</a>
+                                <a class="nav-link" style="color: white;" href="/login">Login</a>
                             </li>
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="/profile">Profile</a>
+                                <a class="nav-link" style="color: white;" href="/profile">Profile</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('logout') }}"
+                                <a class="nav-link" style="color: white;" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}

@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <div class="row g-0">
                         <div class="col-5 col-sm-4">
-                            <img src="{{ asset('storage/profile-icon.jpg') }}" class="img-fluid w-100" alt="card-horizontal-image">
+                            <img src="{{ asset('storage/storage/profile-icon.jpg') }}" class="img-fluid w-100" alt="card-horizontal-image">
                         </div>
                         <div class="col-7 col-sm-8">
                             <div class="card-body">

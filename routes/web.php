@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Menu;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
@@ -32,6 +33,13 @@ Route::post('/add-outlet', [OutletController::class, 'add']);
 Route::put('/add-outlet', [OutletController::class, 'edit']);
 Route::get('/add-outlet/{id}/edit', [OutletController::class, 'edit'])->name('outlet.edit');
 Route::put('/add-outlet/{id}', [OutletController::class, 'update'])->name('outlets.update');
+
+Route::get('/add-menu', [MenuController::class, 'index_add']);
+Route::post('/add-menu', [MenuController::class, 'add']);
+Route::get('/add-menu/{id}/edit', [MenuController::class, 'edit'])->name('menu.edit');
+Route::put('/add-menu/{id}', [MenuController::class, 'update'])->name('menus.update');
+
+
 
 Auth::routes();
 
