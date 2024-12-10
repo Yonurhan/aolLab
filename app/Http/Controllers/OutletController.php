@@ -11,15 +11,14 @@ use Carbon\Carbon;
 class OutletController extends Controller
 {
     public function index(){
-        $viewOutlet = Outlet::orderBy("region","desc")->simplePaginate(3);
+        $viewOutlet = Outlet::orderBy("region","desc")->simplePaginate(4);
         return view("outlets",compact("viewOutlet"));
     }
 
     public function search(Request $request)
     {
         $viewOutlet = Outlet::where("region","LIKE","%$request->search%")
-                            ->orWhere('outlet_name', 'LIKE', "%$request->search%")
-                            ->paginate(3);
+                            ->orWhere('outlet_name', 'LIKE', "%$request->search%");
 
         return view('outlets',compact("viewOutlet"));
     }
@@ -45,7 +44,7 @@ class OutletController extends Controller
     }
 
     public function index_add(){
-        $viewOutlet = Outlet::orderBy("region","desc")->simplePaginate(3);
+        $viewOutlet = Outlet::orderBy("region","desc")->simplePaginate(4);
         return view("addoutlet",compact("viewOutlet"));
     }
 

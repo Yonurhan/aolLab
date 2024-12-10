@@ -60,7 +60,7 @@ class MenuController extends Controller
     public function edit(Request $request, $id)
     {
         $viewMenu = Menu::find($id);
-        return view('updatemenu',compact('viewMenu'))->paginate(20);
+        return view('updatemenu',compact('viewMenu'))
     }
 
     public function update(Request $request, $id){

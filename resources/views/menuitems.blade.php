@@ -49,7 +49,7 @@
                 </div>
             </div>
         @endforeach
-        </div>
+        </div class=>
         <br>
         {{ $viewMakanan->links() }}
     </div>
