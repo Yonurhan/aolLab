@@ -31,7 +31,7 @@ class MenuController extends Controller
     }
 
     public function index_add(){
-        $viewMenu = Menu::orderBy("item_type","desc")->paginate(10);
+        $viewMenu = Menu::orderBy("item_type","desc")->get();
         return view("addmenu",compact("viewMenu"));
     }
 
@@ -43,13 +43,12 @@ class MenuController extends Controller
             'image_path' => 'required|file|image|max:5000',
         ]);
         // dd($validateData);
-       
-            $extFile = $request->image_path->getClientOriginalExtension();
-            $name = $request->input('food_name');
-            $fileName = $name.'.'.$extFile;
-            $path = $request->image_path->storeAs('storage', $fileName, 'public');
-            $validateData['image_path'] = $path;
-        
+
+        $extFile = $request->image_path->getClientOriginalExtension();
+        $name = $request->input('food_name');
+        $fileName = $name.'.'.$extFile;
+        $path = $request->image_path->storeAs('storage', $fileName, 'public');
+        $validateData['image_path'] = $path;
 
         $validateData['date'] = Carbon::now()->format('Y-m-d');
 
@@ -60,7 +59,7 @@ class MenuController extends Controller
     public function edit(Request $request, $id)
     {
         $viewMenu = Menu::find($id);
-        return view('updatemenu',compact('viewMenu'))->paginate(20);
+        return view('updatemenu',compact('viewMenu'));
     }
 
     public function update(Request $request, $id){
@@ -69,8 +68,8 @@ class MenuController extends Controller
             'food_name' => 'required|string|max:255',
             'description' => 'required|string|max:255',
             'image_path' => 'nullable|file|image',
-        ]); 
-        
+        ]);
+
         $menu = Menu::find($id);
 
         if ($request->hasFile('file')) {
@@ -80,7 +79,7 @@ class MenuController extends Controller
             $path = $request->file->storeAs('storage', $fileName, 'public');
             $menu->image_path = $path;
         }
-        
+
         $menu->item_type = $validateData['item_type'];
         $menu->food_name = $validateData['food_name'];
         $menu->description = $validateData['description'];

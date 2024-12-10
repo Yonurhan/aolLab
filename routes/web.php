@@ -34,7 +34,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/bookings', [BookingController::class, 'index'])->name('bookings');
     Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+});
 
+Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/add-outlet', [OutletController::class, 'index_add']);
     Route::post('/add-outlet', [OutletController::class, 'add']);
     Route::put('/add-outlet', [OutletController::class, 'edit']);

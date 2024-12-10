@@ -11,7 +11,7 @@ use Carbon\Carbon;
 class OutletController extends Controller
 {
     public function index(){
-        $viewOutlet = Outlet::orderBy("region","desc")->simplePaginate(3);
+        $viewOutlet = Outlet::orderBy("region","desc")->get();
         return view("outlets",compact("viewOutlet"));
     }
 
@@ -19,7 +19,7 @@ class OutletController extends Controller
     {
         $viewOutlet = Outlet::where("region","LIKE","%$request->search%")
                             ->orWhere('outlet_name', 'LIKE', "%$request->search%")
-                            ->paginate(3);
+                            ->get();
 
         return view('outlets',compact("viewOutlet"));
     }
@@ -28,14 +28,14 @@ class OutletController extends Controller
         $validateData = $request->validate([
             'outlet_name' => 'required|string|max:255',
             'region' => 'required|string|max:50',
-            'opening_time' => 'required',
-            'closing_time' => 'required',
+            'opening_time' => 'required|date_format:H:i',
+            'closing_time' => 'required|date_format:H:i|after:opening_time',
         ]);
 
         $validateData['date'] = Carbon::now()->format('Y-m-d');
         Outlet::create($validateData);
 
-        return redirect('/add-outlet')->with('success', 'User is added successfully!');
+        return redirect('/add-outlet')->with('success', 'Outlet is added successfully!');
     }
 
     public function edit(Request $request, $id)
@@ -45,7 +45,7 @@ class OutletController extends Controller
     }
 
     public function index_add(){
-        $viewOutlet = Outlet::orderBy("region","desc")->simplePaginate(3);
+        $viewOutlet = Outlet::orderBy("region","desc")->get();
         return view("addoutlet",compact("viewOutlet"));
     }
 
