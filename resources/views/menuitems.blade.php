@@ -21,18 +21,18 @@
 </head>
 <body>
 <div class="flex flex-column justify-content-center align-items-center ms-5 me-5">
-    <div class="mt-5 text-center">
-        <h1>Menu items</h1>
+    <div class="mt-5">
+        <h1><strong>Menu items</strong></h1>
         <br>
         <form action="/menu-items" method="POST">
             @csrf
             <nav class="navbar navbar-light bg-light">
                 <div class="d-flex w-100">
-                    <input 
-                        class="form-control flex-grow-1 me-2" 
-                        type="search" 
-                        placeholder="Search the menu.." 
-                        aria-label="Search" 
+                    <input
+                        class="form-control flex-grow-1 me-2"
+                        type="search"
+                        placeholder="Search the menu.."
+                        aria-label="Search"
                         name="search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </div>
@@ -43,7 +43,8 @@
                 <div class="card text-center shadow-sm schedule-card">
                     <img src="{{ asset('storage/' . $makanan->image_path) }}" alt="{{ $makanan->food_name }}" class="card-img-top">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $makanan->food_name }}</h5>
+                        <h4 class="card-title"><strong>{{ $makanan->food_name }}</strong></h4>
+                        <p class="card-text">{{ $makanan->item_type }}</p>
                         <p class="card-text">{{ $makanan->description }}</p>
                     </div>
                 </div>
@@ -51,7 +52,11 @@
         @endforeach
         </div>
         <br>
-        {{ $viewMakanan->links() }}
+        {{-- <nav aria-label="Page navigation example"> --}}
+            <ul class="pagination justify-content-center">
+                {{ $viewMakanan->links() }}
+            </ul>
+        {{-- </nav> --}}
     </div>
 </div>
 </body>

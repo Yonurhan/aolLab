@@ -30,8 +30,17 @@
         @if(!Auth::user()->is_admin)
             <h2 class="mt-5">Create Booking</h2>
             @if(session('success'))
-                <div class="alert alert-success">
+                <div class="alert alert-success alert-dismissible fade show" role="alert" id="success-alert">
                     {{ session('success') }}
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
                 </div>
             @endif
             <div class="form-container bg-dark p-3 rounded" style="max-width: 400px; color: white;">
@@ -40,6 +49,7 @@
                     <div class="form-group" style="margin: 25px 25px">
                         <label for="outlet">Outlet Choice</label>
                         <select id="outlet" name="outlet_id" class="form-control @error('outlet') is-invalid @enderror" required>
+                            <option value=""></option>
                             @foreach ($outlets as $outlet)
                                 <option value="{{ $outlet->id }}">{{ $outlet->outlet_name }}</option>
                             @endforeach
@@ -74,7 +84,42 @@
                     <button type="submit" class="btn btn-danger mt-3" style="margin:25px 25px">Submit</button>
                 </form>
             </div>
-
         @endif
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                var successAlert = document.getElementById('success-alert');
+                if (successAlert) {
+                    successAlert.classList.add('fade-out');
+                    setTimeout(function() {
+                        successAlert.remove();
+                    }, 1000);
+                }
+            }, 5000);
+        });
+    </script>
+
+    <style>
+        .fixed-top {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            margin: 0;
+        }
+        .fade-out {
+            opacity: 0;
+            transition: opacity 1s ease-out;
+        }
+        .alert-success {
+            max-width: 400px;
+        }
+        .alert-danger {
+            max-width: 400px;
+        }
+    </style>
+
 @endsection

@@ -4,6 +4,12 @@
 
 
 <div class = "container mt-4">
+    @if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert" id="success-alert">
+        {{ session('success') }}
+    </div>
+    @endif
+
     <h3 class = "mb-10"> Update Menu </h3>
 
     @if ($errors->any())
@@ -21,7 +27,13 @@
         @method('PUT')
         <div class="col-md-12">
             <label for="item_type" class="form-label">Item Type</label>
-            <input type="text" class="form-control" id="item_type" name="item_type" placeholder="Enter Item Type" value="{{ $viewMenu->item_type }}">
+            <select class="form-control" name="item_type" id="item_type">
+                <option value="" {{ $viewMenu->item_type == '' ? 'selected' : '' }}></option>
+                <option value="Dimsum" {{ $viewMenu->item_type == 'Dimsum' ? 'selected' : '' }}>Dimsum</option>
+                <option value="Ala Carte" {{ $viewMenu->item_type == 'Ala Carte' ? 'selected' : '' }}>Ala Carte</option>
+                <option value="Drink" {{ $viewMenu->item_type == 'Drink' ? 'selected' : '' }}>Drink</option>
+                <option value="Dessert" {{ $viewMenu->item_type == 'Dessert' ? 'selected' : '' }}>Dessert</option>
+            </select>
         </div>
         <div class="col-md-12 mt-2">
             <label for="food_name" class="form-label">Name</label>
@@ -39,9 +51,38 @@
             @enderror
         </div>
         <div class="col-md-12 mt-3">
-            <button type="submit" class="btn btn-danger">Save Changes</button>
+            <button type="submit" class="btn btn-success">Save Changes</button>
         </div>
       </form>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            var successAlert = document.getElementById('success-alert');
+            if (successAlert) {
+                successAlert.classList.add('fade-out');
+                setTimeout(function() {
+                    successAlert.remove();
+                }, 1000);
+            }
+        }, 5000);
+    });
+</script>
+
+<style>
+    .fixed-top {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        margin: 0;
+    }
+    .fade-out {
+        opacity: 0;
+        transition: opacity 1s ease-out;
+    }
+</style>
 
 @endsection
