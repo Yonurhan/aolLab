@@ -25,7 +25,7 @@
         <h1>Menu items</h1>
         <br>
         <form action="/menu-items" method="POST">
-            @csrf 
+            @csrf
             <nav class="navbar navbar-light bg-light">
                 <div class="d-flex w-100">
                     <input 
@@ -37,7 +37,6 @@
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </div>
             </nav>
-
         <div class="row">
         @foreach($viewMakanan as $makanan)
             <div class="col-12 col-sm-6 col-md-4 col-lg-2">

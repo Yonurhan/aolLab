@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -28,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/homepage';
 
     /**
      * Create a new controller instance.
@@ -71,5 +72,19 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'is_admin' => false,
         ]);
+    }
+
+    /**
+     * The user has been registered
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param mixed $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function registered(Request $request)
+    {
+        $this->guard()->logout();
+
+        return redirect('/login')->with('success', 'Registration successful. Please log in.');
     }
 }

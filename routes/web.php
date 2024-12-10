@@ -28,23 +28,21 @@ Route::get('/outlets', [OutletController::class, 'index']);
 Route::get('/outlets', [OutletController::class, 'search']);
 Route::post('/outlets', [OutletController::class, 'search']);
 
-Route::get('/add-outlet', [OutletController::class, 'index_add']);
-Route::post('/add-outlet', [OutletController::class, 'add']);
-Route::put('/add-outlet', [OutletController::class, 'edit']);
-Route::get('/add-outlet/{id}/edit', [OutletController::class, 'edit'])->name('outlet.edit');
-Route::put('/add-outlet/{id}', [OutletController::class, 'update'])->name('outlets.update');
-
-Route::get('/add-menu', [MenuController::class, 'index_add']);
-Route::post('/add-menu', [MenuController::class, 'add']);
-Route::get('/add-menu/{id}/edit', [MenuController::class, 'edit'])->name('menu.edit');
-Route::put('/add-menu/{id}', [MenuController::class, 'update'])->name('menus.update');
-
-
-
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/bookings', [BookingController::class, 'index'])->name('bookings');
     Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+
+    Route::get('/add-outlet', [OutletController::class, 'index_add']);
+    Route::post('/add-outlet', [OutletController::class, 'add']);
+    Route::put('/add-outlet', [OutletController::class, 'edit']);
+    Route::get('/add-outlet/{id}/edit', [OutletController::class, 'edit'])->name('outlet.edit');
+    Route::put('/add-outlet/{id}', [OutletController::class, 'update'])->name('outlets.update');
+
+    Route::get('/add-menu', [MenuController::class, 'index_add']);
+    Route::post('/add-menu', [MenuController::class, 'add']);
+    Route::get('/add-menu/{id}/edit', [MenuController::class, 'edit'])->name('menu.edit');
+    Route::put('/add-menu/{id}', [MenuController::class, 'update'])->name('menus.update');
 });

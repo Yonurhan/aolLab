@@ -3,7 +3,7 @@
 @section('content')
 <div class="d-flex flex-column justify-content-center align-items-center">
     <div class="card" style="width: 80rem">
-        <div class="card-body" style="background-image: url('{{ asset('storage/storage/Discovery_background.jpg') }}'); background-size: cover; background-position: center; color:white">
+        <div class="card-body" style="background-image: url('{{ asset('storage/Discovery_background.jpg') }}'); background-size: cover; background-position: center; color:white">
             <h1 class="card-title text-center">Discover CuantiN</h1>
             <p class="card-text text-center">The modern, authentic Chinese Restaurant, CuantiN started their culinary story back in 1915</p>
             <div class="text-center">
@@ -15,7 +15,7 @@
 
     <div class="mt-5 text-center">
         <h1>About Us</h1>
-        <p>Our restaurant offers the inest dining experience with a variety of delicious dishes cafted by our expert chefs, 
+        <p>Our restaurant offers the inest dining experience with a variety of delicious dishes cafted by our expert chefs,
             Come and enjoy a meal in our cozy and welcoming atmosphere </p>
     </div>
 
